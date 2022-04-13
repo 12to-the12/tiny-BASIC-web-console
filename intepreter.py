@@ -33,6 +33,9 @@ subroutine_pointers = []
 
 
 def solve(x):# this just might be the least elegant code I've ever written
+    assert type(x)==(str or int)
+    print()
+    print(f"solving {x}")
     # evaluates the result of stuff
     # pemdas
     # ()
@@ -43,7 +46,8 @@ def solve(x):# this just might be the least elegant code I've ever written
     # == !=
     # = += -= *= /= %= &bitwise
     if x.isdigit():
-        return x
+        print(f'{x}  is a digit')
+        return int(x)
     if "!" in x:
         a = x[0:first]
         a = solve(a)
@@ -53,7 +57,8 @@ def solve(x):# this just might be the least elegant code I've ever written
         elif b==0: return 1
         else: print("hooray for boobies")
 
-    if ("*" or "/" or "%") in x:# if this level is present, evaluate it
+    elif ("*" in x) or ("/" in x) or ("%" in x):# if this level is present, evaluate it
+        print("* or / or % is in the problem")
         first = 0
         token = None
         if "*" in x:
@@ -73,7 +78,8 @@ def solve(x):# this just might be the least elegant code I've ever written
         if token=="/": return a/b
         if token=="&": return a%b
 
-    if ("+" or "-") in x:# if this level is present, evaluate it
+    elif ("+" in x) or ("-" in x):# if this level is present, evaluate it
+        print("+ or - is present in the problem")
         first = 0
         token = None
         if "+" in x:
@@ -89,7 +95,7 @@ def solve(x):# this just might be the least elegant code I've ever written
         if token=="+": return a+b
         if token=="-": return a-b
 
-    elif ("<" or "<=" or ">" or ">=") in x:# if this level is present, evaluate it
+    elif ("<" in x) or ("<=" in x) or (">" in x) or (">=" in x):# if this level is present, evaluate it
         first = 0
         token = None
         if "<=" in x:# this will  read <= before <
@@ -121,7 +127,7 @@ def solve(x):# this just might be the least elegant code I've ever written
             if a>b: return 1
             else: return 0
     
-    pass
+    else: return x
 
 def REM(x):# comment command, REMARK
     return None
@@ -129,6 +135,8 @@ def LET(x):# variable assignment
     solve(x)
 
 def PRINT(x):# prints to console
+    print('printing')
+    x = ''.join(x)
     return solve(x)
 def INPUT(x):# takes user input
     pass
@@ -167,15 +175,16 @@ functions = {
 
 
 def intepret(command):
+    print('intepreting')
     command = command.upper()
     command = command.strip()
     command = command.split(" ")
     funct, *body = command
-    print(functions.keys() )
-    print(funct)
     if funct in functions.keys():
         output =  functions[funct](body)
         if output != None: return output
         else: return None
     
-    return "this is a cheeseburger"
+    command = ''.join(command)
+    print(f"the command is {command}")
+    return solve(command)

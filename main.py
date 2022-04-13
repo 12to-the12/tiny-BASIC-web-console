@@ -54,6 +54,7 @@ console.bind("keypress", scroll)
 from  intepreter import intepret
 
 def execute(command):
+
     response = intepret(command)
     
     pprint(response)
