@@ -1,0 +1,69 @@
+<!--runs tailwind:-->
+<!--npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch-->
+<!--padding vs border-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js">
+    </script>
+</head>
+
+<body onload="brython({debug:0})" class="bg-gray-900 h-screen" onclick="focusConsole()">
+    <!--this is a very simple interface, a text readout above an input line, where the text scrolls up-->
+
+    <script>
+        function focusConsole() {
+            document.getElementById("console").focus();
+        }
+    </script>
+
+    <script type="text/python">print('importing bananas..')</script>
+
+    <script id='test' src="/Game/test.py" type="text/python"></script>
+    <script id='quips' src="/Game/quips.py" type="text/python"></script>
+    <script id='verbs' src="/Game/verbs.py" type="text/python"></script>
+    <script id='utilities' src="/Game/utilities.py" type="text/python"></script>
+    <script id='entity' src="/Game/entity.py" type="text/python"></script>
+    <script id='world' src="Game/world.py" type="text/python"></script>
+    <!--the above scripts have zero dependencies-->
+    <script id='object' src="/Game/object.py" type="text/python"></script>
+    <script id='domain' src="/Game/domain.py" type="text/python"></script>
+    <script id='character' src="Game/character.py" type="text/python"></script>
+    <script id='humanoid' src="Game/humanoid.py" type="text/python"></script>
+    <script id='initialize' src="Game/initialize.py" type="text/python"></script>
+    <script id='command_parser' src="/Game/command_parser.py" type="text/python"></script>
+
+    <script src="web_main.py" type="text/python"></script>
+
+
+    <!--this is body of the page-->
+    <div id="body" class="font-large p-6 text-[#B8B7B8] rounded-sm pt-2 pl-4">
+        <div id="header" class="pl-12 pt-4 pb-12 font-bold text-2xl">Block-B</div>
+        <!--this is the output-->
+        <div id="readout" class="whitespace-pre-wrap"></div>
+
+        <!--this is the input-->
+        <div>
+            >><input id="console" name="console" autofocus autocomplete="off"
+                class="pl-[13px] focus:outline-none max-w-lg bg-gray-900">
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
