@@ -55,6 +55,7 @@ from  intepreter import intepret
 
 def execute(command):
 
-    response = intepret(command)
-    
-    pprint(response)
+    try: response = intepret(command)
+    except Exception as ex: response = ex
+    if response!=None:
+        pprint(response)
