@@ -50,12 +50,11 @@ console = document["console"] # this refers to the console input field
 console.bind("keyup", keypress)
 console.bind("keypress", scroll)
 
-
-from  intepreter import intepret
+from  intepreter import interpret
 
 def execute(command):
 
-    try: response = intepret(command)
+    try: response = interpret(command)
     except Exception as ex: response = ex
     if response!=None:
         pprint(response)
