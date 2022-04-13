@@ -51,11 +51,9 @@ console.bind("keyup", keypress)
 console.bind("keypress", scroll)
 
 
-import intepreter
+from  intepreter import intepret
 
 def execute(command):
-    command = command.lower()
-    command = command.strip()
+    response = intepret(command)
     
-    
-    pprint("hello world!")
+    pprint(response)
